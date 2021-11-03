@@ -1,0 +1,7 @@
+version: "3"
+services:
+  mongodb:
+    image: mongo:4.2.17
+    container_name: mongo_benny
+    ports:
+      - 27020:27017
