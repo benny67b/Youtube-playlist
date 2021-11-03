@@ -72,6 +72,11 @@ const SearchableVideo = () => {
       loading={isLoading} 
       size='big' 
       placeholder='Paste Youtube video!...' 
+      onKeyPress={(event: React.KeyboardEvent) => {
+        if (event.key === 'Enter') {
+          onSearch();
+        }
+      }}
     />
   );
 }

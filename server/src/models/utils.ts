@@ -8,4 +8,4 @@ export function isVideoCursor(obj: PaginationArgs): obj is CursorPaginationArgs 
   return Boolean((obj as CursorPaginationArgs).lastId);
 }
 
-export const DEFAULT_LIMIT = 10;
+export const DEFAULT_LIMIT = 5;

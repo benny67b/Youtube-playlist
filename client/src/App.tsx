@@ -1,12 +1,11 @@
-import React, { useContext, useEffect, useReducer } from 'react';
-import { Action, addVideo, DispatchedAction } from './actions';
+import React, { useReducer } from 'react';
+import { Action, DispatchedAction } from './actions';
 import './App.scss';
 import MainVideo from './components/main-video';
 import SearchableVideo from './components/searchable';
 import VideosList from './components/videos-list';
 import { Video } from './types/video';
 import 'semantic-ui-css/semantic.min.css';
-import config from './config';
 
 interface AppState {
   selectedVideo?: Video;
@@ -37,7 +36,12 @@ function reducer(state: AppState, action: DispatchedAction): AppState {
         };
       }
     case Action.ADD_VIDEO: {
-      if (state.videos.find(v => v.id === action.video.id)) return state;
+      console.log('state.videos', state.videos);
+      console.log('actions.video', action.video);
+      if (state.videos.find(v => v.id === action.video.id)) {
+        console.log('@@@@@@@@');
+        return state;
+      }
       action.video.index = state.videos.length;
       state.videos.push(action.video);
       return { 
@@ -52,6 +56,14 @@ function reducer(state: AppState, action: DispatchedAction): AppState {
       return {
         ...state,
         videos: state.videos.map((v, index) => ({ ...v, index }))
+      }
+    }
+    case Action.ADD_VIDEOS: {
+      if (action.videos.length === 0) return state;
+      const updatedVideos = state.videos.concat(action.videos).map((video, index) => ({ ...video, index }));
+      return {
+        ...state,
+        videos: updatedVideos
       }
     }
     default:

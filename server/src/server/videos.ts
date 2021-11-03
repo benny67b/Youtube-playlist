@@ -59,13 +59,13 @@ videoRouter.post('/', async (req: Request<{}, {} , AddVideoParams>, res: Respons
 });
 
 
-videoRouter.get('/', async (req: Request<{}, {} , PaginationArgs>, res: Response) => {
+videoRouter.get('/', async (req: Request<{}, {} , {}, PaginationArgs>, res: Response) => {
   let videos: DocumentType<Video>[] = [];
-  if (isVideoCursor(req.body)) {
-    videos = await getVideosByCursor(req.body);
+  if (isVideoCursor(req.query)) {
+    videos = await getVideosByCursor({ limit: Number(req.query.limit), lastId: req.query.lastId });
   }
   else {
-    videos = await getVideosByOffsetLimit(req.body);
+    videos = await getVideosByOffsetLimit(req.query);
   }
   
   res.json(videos);

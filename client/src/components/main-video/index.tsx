@@ -18,7 +18,7 @@ const MainVideo = ({ height }: { height: string }) => {
     <Youtube 
       onEnd={handleVideoEnd} 
       videoId={selectedVideo.youtubeVideoId} 
-      opts={{ height }}
+      opts={{ height, playerVars: { autoplay: 1 }  }}
     />
   );
 }
