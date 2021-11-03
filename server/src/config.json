@@ -1,0 +1,12 @@
+{
+  "env": "dev",
+  "server": {
+    "port": 55551
+  },
+  "mongodb": {
+    "uri": "mongodb://localhost:27020",
+    "dbName": "YoutubePlayer"
+  },
+  "youtubeVideoPrefix": "https://www.youtube.com/watch?v=",
+  "youtubeApiKey": "AIzaSyBR0Jq-3hOh87gaYQRpAiCxooDq9JPrCe8"
+}
